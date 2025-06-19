@@ -1,45 +1,52 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+  <title>Grofers Checkout</title>
 </head>
-
 <body>
-    <!-- the entire body must be written by student -->
-    <table style="width: 100%">
-    <caption>
-      Monthly savings
-    </caption>
+  <h2>Grocery List</h2>
+  <table id="groceryTable" border="1">
     <tr>
-      <th>Item</th>
-      <th>Prices in Rs</th>
+      <th class="item">Item</th>
+      <th class="prices">Price</th>
     </tr>
     <tr>
-      <td class="item">Tea</td>
-      <td class="price">50</td>
+      <td class="item">Apples</td>
+      <td class="prices">50</td>
     </tr>
     <tr>
-      <td class="item">Coffee</td>
-      <td class="price">70</td>
-    </tr>
-    <tr>
-      <td class="item">Biscuits</td>
-      <td class="price">100</td>
-    </tr>
-    <tr>
-      <td class="item">Rice</td>
-      <td class="price">130</td>
+      <td class="item">Bananas</td>
+      <td class="prices">30</td>
     </tr>
     <tr>
       <td class="item">Milk</td>
-      <td class="price">50</td>
+      <td class="prices">60</td>
     </tr>
   </table>
-    <script type="text/javascript" src="./script.js">
-</script>
 
+  <script>
+    function calculateTotal() {
+      const prices = document.querySelectorAll(".prices");
+      let sum = 0;
+
+      // Start from index 1 to skip the header
+      for (let i = 1; i < prices.length; i++) {
+        sum += parseFloat(prices[i].textContent);
+      }
+
+      // Create a new row
+      const table = document.getElementById("groceryTable");
+      const newRow = document.createElement("tr");
+      const cell = document.createElement("td");
+      cell.colSpan = 2;
+      cell.textContent = "Total Price: ₹" + sum;
+
+      newRow.appendChild(cell);
+      table.appendChild(newRow);
+    }
+
+    // Call the function after DOM is loaded
+    window.onload = calculateTotal;
+  </script>
 </body>
-
 </html>
