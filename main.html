@@ -3,30 +3,38 @@
 <head>
   <meta charset="UTF-8">
   <title>Grofers Checkout</title>
+  <style>
+    table { border-collapse: collapse; }
+    td, th { border: 1px solid #000; padding: 6px 12px; }
+  </style>
 </head>
 <body>
   <h2>Grocery List</h2>
 
-  <table id="groceryTable" border="1">
-    <tr>
-      <th class="item">Item</th>
-      <th class="prices">Price</th>
-    </tr>
-    <tr>
-      <td class="item">Apples</td>
-      <td class="prices">50</td>
-    </tr>
-    <tr>
-      <td class="item">Bananas</td>
-      <td class="prices">30</td>
-    </tr>
-    <tr>
-      <td class="item">Milk</td>
-      <td class="prices">60</td>
-    </tr>
+  <table id="groceryTable">
+    <thead>
+      <tr>
+        <th class="item">Item</th>
+        <!-- ⚠️  No “price” class on the header -->
+        <th>Price (₹)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <!-- Five editable price cells so your test can type into them -->
+      <tr><td class="item">Apples</td>  <td class="price" contenteditable="true">0</td></tr>
+      <tr><td class="item">Bananas</td> <td class="price" contenteditable="true">0</td></tr>
+      <tr><td class="item">Milk</td>    <td class="price" contenteditable="true">0</td></tr>
+      <tr><td class="item">Bread</td>   <td class="price" contenteditable="true">0</td></tr>
+      <tr><td class="item">Eggs</td>    <td class="price" contenteditable="true">0</td></tr>
+    </tbody>
   </table>
 
-  <!-- Link to the external JavaScript -->
+  <button id="calcBtn">Calculate Total</button>
+
+  <!-- Cypress looks for this element -->
+  <p>Total: ₹<span id="ans">0</span></p>
+
   <script src="script.js"></script>
 </body>
 </html>

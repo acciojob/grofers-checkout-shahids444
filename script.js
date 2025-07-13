@@ -1,25 +1,29 @@
-// Step 1: Select all price elements
-const priceElements = document.querySelectorAll('.prices');
+function calculateTotal() {
+  const priceCells = document.querySelectorAll('.price');
+  let total = 0;
 
-// Step 2: Initialize total price variable
-let totalPrice = 0;
+  priceCells.forEach(cell => {
+    const value = parseFloat(cell.textContent.trim());
+    if (!isNaN(value)) total += value;
+  });
 
-// Step 3: Loop through the price elements and calculate the total
-priceElements.forEach(priceElement => {
-    // Convert the price text to a number
-    // Assuming prices are in a format like "$10.00"
-    const price = parseFloat(priceElement.textContent.replace(/[^0-9.-]+/g,""));
-    totalPrice += price; // Add to total
-});
+  // Update the #ans span
+  document.getElementById('ans').textContent = total;
 
-// Step 4: Create a new row and cell for the total
-const table = document.querySelector('table'); // Assuming you have a single table
-const newRow = document.createElement('tr');
-const newCell = document.createElement('td');
+  // Also show the total as the last row inside the table (optional but nice)
+  const tableBody = document.querySelector('#groceryTable tbody');
+  let totalRow = document.getElementById('totalRow');
 
-// Set the cell content to the total price
-newCell.textContent = `Total Price: $${totalPrice.toFixed(2)}`; // Format as currency
+  if (!totalRow) {
+    totalRow = document.createElement('tr');
+    totalRow.id = 'totalRow';
+    const td = document.createElement('td');
+    td.colSpan = 2;
+    totalRow.appendChild(td);
+    tableBody.appendChild(totalRow);
+  }
 
-// Step 5: Append the new cell to the new row, and the new row to the table
-newRow.appendChild(newCell);
-table.appendChild(newRow);
+  totalRow.firstChild.textContent = `Total Price: ₹${total}`;
+}
+
+document.getElementById('calcBtn').addEventListener('click', calculateTotal);
