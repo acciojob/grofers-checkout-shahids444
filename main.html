@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Grofers Checkout</title>
 </head>
 <body>
   <h2>Grocery List</h2>
+
   <table id="groceryTable" border="1">
     <tr>
       <th class="item">Item</th>
@@ -24,29 +26,7 @@
     </tr>
   </table>
 
-  <script>
-    function calculateTotal() {
-      const prices = document.querySelectorAll(".prices");
-      let sum = 0;
-
-      // Start from index 1 to skip the header
-      for (let i = 1; i < prices.length; i++) {
-        sum += parseFloat(prices[i].textContent);
-      }
-
-      // Create a new row
-      const table = document.getElementById("groceryTable");
-      const newRow = document.createElement("tr");
-      const cell = document.createElement("td");
-      cell.colSpan = 2;
-      cell.textContent = "Total Price: ₹" + sum;
-
-      newRow.appendChild(cell);
-      table.appendChild(newRow);
-    }
-
-    // Call the function after DOM is loaded
-    window.onload = calculateTotal;
-  </script>
+  <!-- Link to the external JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
